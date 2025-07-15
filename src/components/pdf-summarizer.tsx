@@ -29,8 +29,8 @@ export function PdfSummarizer() {
       if (selectedFile.type !== "application/pdf") {
         toast({
           variant: "destructive",
-          title: "Invalid File Type",
-          description: "Please upload a valid PDF file.",
+          title: "Tipo de arquivo inválido",
+          description: "Por favor, faça o upload de um arquivo PDF válido",
         });
         setFile(null);
         if (fileInputRef.current) {
@@ -39,7 +39,7 @@ export function PdfSummarizer() {
         return;
       }
       setFile(selectedFile);
-      setSummary(null); // Clear previous summary on new file selection
+      setSummary(null);
     }
   };
 
@@ -47,8 +47,8 @@ export function PdfSummarizer() {
     if (!file) {
       toast({
         variant: "destructive",
-        title: "No File Selected",
-        description: "Please select a PDF file to summarize.",
+        title: "Nenhum arquivo foi selecionado",
+        description: "Por favor, selecione um arquivo para ser resumido.",
       });
       return;
     }
@@ -63,13 +63,13 @@ export function PdfSummarizer() {
       if (result.success && result.summary) {
         setSummary(result.summary);
         toast({
-          title: "Success!",
-          description: "Your PDF has been summarized.",
+          title: "Sucesso!",
+          description: "Seu arquivo foi resumido!",
         });
       } else {
         toast({
           variant: "destructive",
-          title: "Summarization Failed",
+          title: "Falha ao resumir o arquivo",
           description: result.error,
         });
       }
@@ -78,8 +78,8 @@ export function PdfSummarizer() {
     reader.onerror = () => {
       toast({
         variant: "destructive",
-        title: "File Read Error",
-        description: "An error occurred while reading the file.",
+        title: "Falha ao ler o arquivo",
+        description: "Ocorreu um erro ao ler o arquivo.",
       });
       setIsLoading(false);
     };
@@ -104,10 +104,10 @@ export function PdfSummarizer() {
         <CardHeader>
           <CardTitle className="font-headline text-2xl flex items-center gap-2">
             <UploadCloud className="h-6 w-6" />
-            Upload Your PDF
+            Faça upload do seu PDF
           </CardTitle>
           <CardDescription>
-            Select a PDF file from your device to begin the analysis.
+            Selecione um arquivo pdf do seu dispositivo e clique em "Resuma".
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -128,10 +128,10 @@ export function PdfSummarizer() {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Analyzing...
+                  Analizando...
                 </>
               ) : (
-                "Summarize"
+                "Resuma"
               )}
             </Button>
           </div>
@@ -144,15 +144,15 @@ export function PdfSummarizer() {
             <div className="space-y-1.5">
               <CardTitle className="font-headline text-2xl flex items-center gap-2">
                 <FileText className="h-6 w-6" />
-                Generated Summary
+                Resumo gerado
               </CardTitle>
               <CardDescription>
-                Here is the concise summary of your document.
+              Aqui está o resumo conciso do seu documento.
               </CardDescription>
             </div>
             <Button variant="outline" size="icon" onClick={downloadSummary}>
               <Download className="h-4 w-4" />
-              <span className="sr-only">Download Summary</span>
+              <span className="sr-only">Baixar resumo</span>
             </Button>
           </CardHeader>
           <CardContent>
