@@ -9,7 +9,7 @@ export default function Home() {
             PDF Analyzer & Summarizer
           </h1>
           <p className="mt-4 max-w-xl mx-auto text-lg text-muted-foreground">
-            Instantly distill your PDF documents into concise, easy-to-read summaries with the power of AI.
+          Transforme instantaneamente seus documentos PDF em resumos concisos e fáceis de ler com o poder da IA.
           </p>
         </div>
         <PdfSummarizer />
