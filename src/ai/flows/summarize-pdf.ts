@@ -15,13 +15,13 @@ const SummarizePdfInputSchema = z.object({
   pdfDataUri: z
     .string()
     .describe(
-      "The PDF document content, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
+      "O conteúdo do documento PDF, como um URI de dados, deve incluir um tipo MIME e usar codificação Base64. Formato esperado: 'data:<mimetype>;base64,<encoded_data>'."
     ),
 });
 export type SummarizePdfInput = z.infer<typeof SummarizePdfInputSchema>;
 
 const SummarizePdfOutputSchema = z.object({
-  summary: z.string().describe('A concise summary of the PDF document.'),
+  summary: z.string().describe('Um resumo conciso do documento PDF.'),
 });
 export type SummarizePdfOutput = z.infer<typeof SummarizePdfOutputSchema>;
 
@@ -33,7 +33,7 @@ const prompt = ai.definePrompt({
   name: 'summarizePdfPrompt',
   input: {schema: SummarizePdfInputSchema},
   output: {schema: SummarizePdfOutputSchema},
-  prompt: `You are an expert summarizer of PDF documents. Please provide a concise and accurate summary of the following PDF document.
+  prompt: `Você é um especialista em resumo de documentos PDF. Forneça um resumo conciso e preciso do seguinte documento PDF. Preciso que mostre o resumo com detalhes importantes, Tópicos e demonstre domínio sobre o arquivo a seguir.
 
 PDF Document: {{media url=pdfDataUri}}`,
 });
